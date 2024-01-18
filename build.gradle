@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'example.org'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext{
+    seleniumJava="3.141.59"
+}
+
+dependencies {
+
+    testImplementation "org.seleniumhq.selenium:selenium-java:${seleniumJava}"
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+}
+
+gradle.startParameter.continueOnFailure = true
