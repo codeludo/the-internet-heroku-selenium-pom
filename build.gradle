@@ -16,7 +16,15 @@ dependencies {
 
     testImplementation "org.seleniumhq.selenium:selenium-java:${seleniumJava}"
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+    testImplementation(platform('org.junit:junit-bom:5.10.1'))
 
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 gradle.startParameter.continueOnFailure = true
