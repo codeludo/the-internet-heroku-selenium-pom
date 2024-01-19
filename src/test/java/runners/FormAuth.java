@@ -1,19 +1,35 @@
 package runners;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FormAuth {
 
-    public static void main(String[] args) {
+    private WebDriver driver;
 
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
-        WebDriver driver = new ChromeDriver();
+    @BeforeAll
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
+    @BeforeEach
+    public void setupTest() {
+        driver = new ChromeDriver();
+    }
+
+    @AfterEach
+    public void teardown() {
+        if (driver != null) driver.quit();
+    }
+
+    @Test
+    public void test() {
         driver.get("https://the-internet.herokuapp.com/login");
         System.out.println("page is launched successfully");
-
-        driver.close();
-
     }
 }
